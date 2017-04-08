@@ -12,7 +12,12 @@
 function ColorTile(x, y, color, hits, lastHitBy) {
     this.x = x;
     this.y = y;
-    this.color = color || COLORS[1];
+
+    if (typeof color === 'object' && color instanceof Color)
+        this.color = color;
+    else
+        this.color = new Color(color);
+
     this.hits = hits || 0;
     this.lastHitBy = lastHitBy || 'init';
 }
@@ -40,7 +45,7 @@ var db = (function () {
     function _write() {
         for (var i = 0; i < _cells.length; i++) {
             var cell = _cells[i];
-            _ctx.fillStyle = cell.color;
+            _ctx.fillStyle = cell.color.rgb();
             _ctx.fillRect(cell.x * SIZE, cell.y * SIZE, SIZE, SIZE);
         }
     }
@@ -54,7 +59,12 @@ var db = (function () {
         put: function (x, y, color) {
             var tile = this.get(x, y);
             tile.hits++;
-            tile.color = color;
+
+            if (typeof color === 'object' && color instanceof Color)
+                tile.color = color;
+            else
+                tile.color = new Color(color);
+
             tile.lastHitBy = this.put.caller.name || 'anonymous';
             _put(tile);
         },
