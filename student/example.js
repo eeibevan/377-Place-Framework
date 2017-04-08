@@ -1,24 +1,20 @@
 // Fills From The Top Down
-// Changes Color When The End Is Reached
+// With Random Colors
 var example = (function () {
     var x = 0;
     var y = 0;
-    var colorIndex = 2;
+    var color = Color.Blue();
 
     function black1() {
-        db.put(x, y, COLORS[colorIndex]);
+        db.put(x, y, color);
         x++;
+        color = Color.Random();
         if (x >= W) {
             x = 0;
             y++;
         }
-        if (y >= H) {
+        if (y >= H)
             y = 0;
-            colorIndex++;
-
-            if (colorIndex > 16)
-                colorIndex = 0;
-        }
     }
 
     return black1;
@@ -28,11 +24,10 @@ var example = (function () {
 var example2 = (function () {
     var x = W - 1;
     var y = H - 1;
-    var colorIndex = 0;
-
+    var color = Color.Black();
 
     function black2() {
-        db.put(x, y, COLORS[colorIndex]);
+        db.put(x, y, color);
         x--;
         if (x < 0) {
             x = W - 1;
@@ -51,10 +46,10 @@ var example2 = (function () {
 var example3 = (function () {
     var x = 0;
     var y = 0;
-    var colorIndex = 5;
+    var color = Color.Yellow();
 
     function black3() {
-        db.put(x, y, COLORS[colorIndex]);
+        db.put(x, y, color);
         y++;
 
         if (y >= H) {
