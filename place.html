@@ -13,19 +13,23 @@
     <script src="config.js"></script>
     <script src="util.js"></script>
     <script src="db.js"></script>
+    <script src="driver.js"></script>
+
+    <script src="student/example.js"></script>
     <script>
+        var driver;
         window.onload = function () {
             db.init($('cvs').getContext('2d'));
-
-            (function test() {
-                for (var i = 0; i < W; i++) {
-                    for (var j = 0; j < H; j++) {
-                        db.put(i,j, COLORS[0]);
-                    }
-                }
-            })();
-
-            db.write();
+            driver = new Driver(studentFunctions, db);
+            $('go').addEventListener('click', function () {
+                driver.start();
+            });
+            $('change').addEventListener('click', function () {
+                driver.switchMode();
+            });
+            $('stop').addEventListener('click', function () {
+                driver.stop();
+            });
         }
     </script>
 </head>
@@ -34,7 +38,7 @@
     <canvas width="500" height="500" id="cvs"></canvas>
     <br />
     <input id="go" type="button" value="Do It" />
-    &nbsp;
+    <input id="change" type="button" value="Change Mode" />
     <input id="stop" type="button" value="Stop It" />
 </div>
 </body>
