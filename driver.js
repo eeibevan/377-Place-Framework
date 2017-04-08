@@ -8,12 +8,10 @@ function Driver(studentFunctions, db, asap, time) {
 
 Driver.prototype.tick = function () {
     var arr = shuffle(this.studentFunctions);
-    var order = [];
-    for (var i = 0; i < arr.length; i++) {
+
+    for (var i = 0; i < arr.length; i++)
         arr[i]();
-        order.push(arr[i].name);
-    }
-    alert(order);
+
     db.write();
 
     if (this._asap)
