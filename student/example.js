@@ -5,7 +5,7 @@ var example = (function () {
     var y = 0;
     var color = Color.Blue();
 
-    function black1() {
+    function blackMain1() {
         db.put(x, y, color);
         x++;
         color = Color.Random();
@@ -17,7 +17,7 @@ var example = (function () {
             y = 0;
     }
 
-    return black1;
+    return blackMain1;
 })();
 
 // Fills From The Bottom Up With Black
@@ -26,7 +26,7 @@ var example2 = (function () {
     var y = H - 1;
     var color = Color.Black();
 
-    function black2() {
+    function blackMain2() {
         db.put(x, y, color);
         x--;
         if (x < 0) {
@@ -39,7 +39,7 @@ var example2 = (function () {
 
     }
 
-    return black2;
+    return blackMain2;
 })();
 
 // Fills From The Left To Right With Yellow
@@ -48,7 +48,7 @@ var example3 = (function () {
     var y = 0;
     var color = Color.Yellow();
 
-    function black3() {
+    function blackMain3() {
         db.put(x, y, color);
         y++;
 
@@ -61,7 +61,7 @@ var example3 = (function () {
         }
     }
 
-    return black3;
+    return blackMain3;
 })();
 
 if (RUN_EXAMPLES) {
