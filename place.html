@@ -10,7 +10,24 @@
     <title>r/place</title>
     <link rel="shortcut icon" href="Img/favicon.png" />
     <link rel="stylesheet" href="place.css" />
-    <script src="config.js"></script>
+
+    <script>
+        const
+            // developers: change these THREE for testing
+            PIXELS = 500,   // enforce square canvas
+            SIZE = 5,      // size of square 'CELL' to draw
+            TIME = 200,     // 2000 // milliseconds in timeout
+
+            RUN_EXAMPLES = true, // Set To false To Disable Example Functions
+
+            W = PIXELS/SIZE, // # of cells in a row/column
+            H = W,
+
+            CELLS = W * H;  // total cells
+
+        var studentFunctions = [];
+    </script>
+
     <script src="color.js"></script>
     <script src="util.js"></script>
     <script src="db.js"></script>

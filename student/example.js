@@ -64,6 +64,8 @@ var example3 = (function () {
     return black3;
 })();
 
-studentFunctions.push(example);
-studentFunctions.push(example2);
-studentFunctions.push(example3);
+if (RUN_EXAMPLES) {
+    studentFunctions.push(example);
+    studentFunctions.push(example2);
+    studentFunctions.push(example3);
+}
