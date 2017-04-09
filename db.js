@@ -113,7 +113,7 @@ var db = (function () {
          * Your Main Function, The please Provide This Parameter
          */
         putTile: function (tile, lastHitBy) {
-            this.put(tile.x, tile.y, tile.color, tile.lastHitBy || this.putTile.caller.name);
+            this.put(tile.x, tile.y, tile.color, lastHitBy || tile.lastHitBy || this.putTile.caller.name);
         },
 
         /**
