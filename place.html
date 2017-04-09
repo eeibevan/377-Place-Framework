@@ -41,7 +41,7 @@
         var driver;
         window.onload = function () {
             db.init($('cvs').getContext('2d'));
-            driver = new Driver(studentFunctions, db);
+            driver = new Driver(studentFunctions);
             $('go').addEventListener('click', function () {
                 driver.start();
             });

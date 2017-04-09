@@ -1,6 +1,5 @@
-function Driver(studentFunctions, db, asap, time) {
+function Driver(studentFunctions, asap, time) {
     this.studentFunctions = studentFunctions;
-    this.db = db;
     this._asap = asap || false;
     this.time = time || TIME || 1000;
     this._procId = 0;
