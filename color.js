@@ -30,6 +30,10 @@ function Color(color) {
     }
 }
 
+Color.prototype.copy = function () {
+    return new Color(this.index);
+};
+
 Color.prototype.rgb = function () {
     return COLORS[this.index];
 };

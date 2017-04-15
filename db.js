@@ -27,7 +27,7 @@ function ColorTile(x, y, color, hits, lastHitBy) {
  * @returns {ColorTile}
  */
 ColorTile.prototype.copy = function () {
-    return new ColorTile(this.x, this.y, this.color, this.hits, this.lastHitBy);
+    return new ColorTile(this.x, this.y, this.color.copy(), this.hits, this.lastHitBy);
 };
 
 var db = (function () {
@@ -92,7 +92,7 @@ var db = (function () {
             tile.hits++;
 
             if (color instanceof Color)
-                tile.color = color;
+                tile.color = color.copy();
             else
                 tile.color = new Color(color);
 
@@ -113,7 +113,7 @@ var db = (function () {
          * Your Main Function, The please Provide This Parameter
          */
         putTile: function (tile, lastHitBy) {
-            this.put(tile.x, tile.y, tile.color, lastHitBy || tile.lastHitBy || this.putTile.caller.name);
+            this.put(tile.x, tile.y, tile.color.copy(), lastHitBy || tile.lastHitBy || this.putTile.caller.name);
         },
 
         /**
