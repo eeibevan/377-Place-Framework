@@ -41,7 +41,7 @@
         var driver;
         window.onload = function () {
             db.init($('cvs').getContext('2d'));
-            driver = new Driver(studentFunctions, true, TIME, $('numTicks'), $('statsBody'));
+            driver = new Driver(studentFunctions, true, TIME, $('numTicks'), $('statsBody'), $('timer'));
             $('go').addEventListener('click', function () {
                 driver.start();
             });
@@ -65,6 +65,9 @@
     <div id="ticksContainer">
         <div>Ticks: </div>
         <div id="numTicks">0</div>
+    </div>
+    <div id="timeContainer">
+        <div id="timer"></div>
     </div>
     <table id="stats">
         <thead>
