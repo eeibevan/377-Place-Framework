@@ -23,7 +23,7 @@ function Color(color) {
         if (found !== -1 )
             this.index = found;
     } else if (typeof color === 'number') {
-        if (color > 0 && color < COLORS.length - 1)
+        if (color > 0 && color < COLORS.length)
             this.index = color;
     } else if (typeof color === 'object' && color instanceof Color) {
         this.index = color.index;
