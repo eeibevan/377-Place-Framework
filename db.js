@@ -32,7 +32,10 @@ ColorTile.prototype.copy = function () {
 
 var db = (function () {
     var _cells = [],
-        _ctx;
+        _ctx,
+        _stats = {
+            functions: {}
+        };
 
     // Init _cells In Its Own Scope,
     // So i Does Not Pollute The Closure
@@ -49,11 +52,24 @@ var db = (function () {
     }
 
     function _write() {
+        // Reset For Every Write
+        _stats.functions = {};
+
         for (var i = 0; i < _cells.length; i++) {
             var cell = _cells[i];
             _ctx.fillStyle = cell.color.rgb();
             _ctx.fillRect(cell.x * SIZE, cell.y * SIZE, SIZE, SIZE);
+            _stats.functions[cell.lastHitBy] = _stats.functions[cell.lastHitBy] + 1 || 1;
         }
+    }
+
+    function _compareStats(left, right) {
+        if (left.tiles < right.tiles)
+            return 1;
+        else if (left.tiles > right.tiles)
+            return -1;
+
+        return 0;
     }
 
     // Public Functions
@@ -133,6 +149,39 @@ var db = (function () {
         init: function (ctx) {
             _ctx = ctx;
             _write();
+        },
+
+        /**
+         * Gets The Name of Each Known Function
+         * And How Many Tiles Have Been Written By Them
+         * In Descending Order
+         *
+         * @returns {Array}
+         * And Array of Objects With The Following Structure,
+         * Sorted In Descending Order
+         *
+         * {
+         * name {String}
+         * The Name of The Function That Wrote The Tiles
+         *
+         * tiles {number}
+         * The Number of Tiles That The Function Owns
+         * }
+         */
+        getFunctionStats: function () {
+            var arr = [];
+            for (var func in _stats.functions) {
+                if (_stats.functions.hasOwnProperty(func)) {
+                    arr.push({
+                        name: func.toString(),
+                        tiles: _stats.functions[func]
+                    })
+                }
+            }
+
+            arr.sort(_compareStats);
+
+            return arr;
         }
     }
 })();

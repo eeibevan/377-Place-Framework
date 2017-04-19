@@ -1,8 +1,11 @@
-function Driver(studentFunctions, asap, time) {
+function Driver(studentFunctions, asap, time, ticksCounter, statsBody) {
     this.studentFunctions = studentFunctions;
     this._asap = asap || false;
     this.time = time || TIME || 1000;
+    this._ticksCounter  = ticksCounter;
+    this._statsTableBody = statsBody;
     this._procId = 0;
+    this._ticks = 0;
 }
 
 Driver.prototype.tick = function () {
@@ -13,11 +16,32 @@ Driver.prototype.tick = function () {
 
     db.write();
 
+    if (this._ticksCounter)
+        this._ticksCounter.innerHTML = this._ticks;
+
+    if (this._statsTableBody)
+        this.printStats();
+
+    this._ticks++;
+
     if (this._asap)
         this._procId = requestAnimationFrame(this.tick.bind(this));
     else
         this._procId = setTimeout(this.tick.bind(this), this.time);
+};
 
+Driver.prototype.printStats = function () {
+    var stats = db.getFunctionStats();
+    var htmlAcc = "";
+
+    stats.forEach(function (stat) {
+        htmlAcc += "<tr>";
+        htmlAcc += "<td>" + stat.name + "</td>";
+        htmlAcc += "<td>" + stat.tiles + "</td>";
+        htmlAcc += "</tr>";
+    });
+
+    this._statsTableBody.innerHTML = htmlAcc;
 };
 
 Driver.prototype.start = function () {

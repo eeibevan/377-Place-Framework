@@ -41,7 +41,7 @@
         var driver;
         window.onload = function () {
             db.init($('cvs').getContext('2d'));
-            driver = new Driver(studentFunctions);
+            driver = new Driver(studentFunctions, true, TIME, $('numTicks'), $('statsBody'));
             $('go').addEventListener('click', function () {
                 driver.start();
             });
@@ -61,6 +61,21 @@
     <input id="go" type="button" value="Do It" />
     <input id="change" type="button" value="Change Mode" />
     <input id="stop" type="button" value="Stop It" />
+    <br />
+    <div id="ticksContainer">
+        <div>Ticks: </div>
+        <div id="numTicks">0</div>
+    </div>
+    <table id="stats">
+        <thead>
+        <tr>
+            <th>Function</th>
+            <th>Tiles Owned</th>
+        </tr>
+        </thead>
+        <tbody id="statsBody">
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

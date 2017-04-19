@@ -8,8 +8,31 @@ canvas {
     display:block;
 }
 
+table {
+    width: 250px;
+    margin: 10px 125px;
+    text-align: right;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px 0;
+}
+
+tr:nth-child(odd)>td {
+    background-color: lightgray;
+}
+
 .frame{
     margin:auto;
     width:520px;
     text-align:center;
+}
+
+#ticksContainer {
+    margin: 10px 0;
+}
+
+#ticksContainer>div {
+    display: inline;
 }
