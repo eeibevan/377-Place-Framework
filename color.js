@@ -19,7 +19,7 @@ function Color(color) {
     this.index = 0;
 
     if (typeof color === 'string') {
-        var found = COLORS.indexOf(color);
+        let found = COLORS.indexOf(color);
         if (found !== -1 )
             this.index = found;
     } else if (typeof color === 'number') {

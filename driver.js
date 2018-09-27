@@ -11,9 +11,9 @@ function Driver(studentFunctions, asap, time, ticksCounter, statsBody, timer) {
 }
 
 Driver.prototype.tick = function () {
-    var arr = shuffle(this.studentFunctions);
+    let arr = shuffle(this.studentFunctions);
 
-    for (var i = 0; i < arr.length; i++)
+    for (let i = 0; i < arr.length; i++)
         arr[i]();
 
     db.write();
@@ -36,8 +36,8 @@ Driver.prototype.tick = function () {
 };
 
 Driver.prototype.printStats = function () {
-    var stats = db.getFunctionStats();
-    var htmlAcc = "";
+    let stats = db.getFunctionStats();
+    let htmlAcc = "";
 
     stats.forEach(function (stat) {
         htmlAcc += "<tr>";
@@ -69,22 +69,22 @@ Driver.prototype.stop = function () {
 };
 
 Driver.prototype._timerTick = function () {
-    var timeDiff = new Date() - this._startTime;
+    let timeDiff = new Date() - this._startTime;
     //strip the ms
     timeDiff /= 1000;
 
-    var seconds = Math.round(timeDiff % 60);
+    let seconds = Math.round(timeDiff % 60);
 
     timeDiff = Math.floor(timeDiff / 60);
-    var minutes = Math.round(timeDiff % 60);
+    let minutes = Math.round(timeDiff % 60);
 
     timeDiff = Math.floor(timeDiff / 60);
-    var hours = Math.round(timeDiff % 24);
+    let hours = Math.round(timeDiff % 24);
 
     timeDiff = Math.floor(timeDiff / 24);
-    var days = timeDiff ;
+    let days = timeDiff ;
 
-    var acc = '';
+    let acc = '';
     if (days > 0)
         acc += 'Days: ' + days + ' ';
     if (hours > 0)

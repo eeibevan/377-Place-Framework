@@ -30,21 +30,17 @@ ColorTile.prototype.copy = function () {
     return new ColorTile(this.x, this.y, this.color.copy(), this.hits, this.lastHitBy);
 };
 
-var db = (function () {
-    var _cells = [],
+let db = (function () {
+    let _cells = [],
         _ctx,
         _stats = {
             functions: {}
         };
 
-    // Init _cells In Its Own Scope,
-    // So i Does Not Pollute The Closure
-    // Run When It Is Encountered
-    (function () {
-        for (var i = 0; i < CELLS; i++) {
-            _cells.push(new ColorTile(i % W, Math.floor(i / W)));
-        }
-    })();
+    for (let i = 0; i < CELLS; i++) {
+        _cells.push(new ColorTile(i % W, Math.floor(i / W)));
+    }
+
 
     // Private Functions
     function _put(tile) {
@@ -55,8 +51,8 @@ var db = (function () {
         // Reset For Every Write
         _stats.functions = {};
 
-        for (var i = 0; i < _cells.length; i++) {
-            var cell = _cells[i];
+        for (let i = 0; i < _cells.length; i++) {
+            let cell = _cells[i];
             _ctx.fillStyle = cell.color.rgb();
             _ctx.fillRect(cell.x * SIZE, cell.y * SIZE, SIZE, SIZE);
             _stats.functions[cell.lastHitBy] = _stats.functions[cell.lastHitBy] + 1 || 1;
@@ -84,11 +80,9 @@ var db = (function () {
          * @returns {ColorTile}
          */
         get: function (x, y) {
-            var cell = _cells[x % W +  y * H];
-
             // A Copy Is Returned So The
             // Original May Not Be Modified Without put()
-            return cell.copy();
+            return _cells[x % W +  y * H].copy();
         },
 
         /**
@@ -104,7 +98,7 @@ var db = (function () {
          * Your Main Function, The please Provide This Parameter
          */
         put: function (x, y, color, lastHitBy) {
-            var tile = this.get(x, y);
+            let tile = this.get(x, y);
             tile.hits++;
 
             if (color instanceof Color)
@@ -112,6 +106,7 @@ var db = (function () {
             else
                 tile.color = new Color(color);
 
+            // Either use the provided value, or attempt to derive it from the function
             tile.lastHitBy = lastHitBy || this.put.caller.name || 'anonymous';
             _put(tile);
         },
@@ -129,7 +124,12 @@ var db = (function () {
          * Your Main Function, The please Provide This Parameter
          */
         putTile: function (tile, lastHitBy) {
-            this.put(tile.x, tile.y, tile.color.copy(), lastHitBy || tile.lastHitBy || this.putTile.caller.name);
+            this.put(
+                tile.x,
+                tile.y,
+                tile.color.copy(),
+                lastHitBy || tile.lastHitBy || this.putTile.caller.name
+            );
         },
 
         /**
@@ -169,8 +169,8 @@ var db = (function () {
          * }
          */
         getFunctionStats: function () {
-            var arr = [];
-            for (var func in _stats.functions) {
+            let arr = [];
+            for (let func in _stats.functions) {
                 if (_stats.functions.hasOwnProperty(func)) {
                     arr.push({
                         name: func.toString(),
