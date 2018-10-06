@@ -1,19 +1,19 @@
-const COLORS = ["rgb(255, 255, 255)", // White
-"rgb(228, 228, 228)", // Light Grey
-"rgb(136, 136, 136)", // Grey
-"rgb(34, 34, 34)", // Black
-"rgb(255, 167, 209)", // Light Pink
-"rgb(229, 0, 0)", // Red
-"rgb(229, 149, 0)", // Dark Orange
-"rgb(160, 106, 66)", // Light Brown
-"rgb(229, 217, 0)", // Yellow
-"rgb(148, 224, 68)", // Light Green
-"rgb(2, 190, 1)", // Green
-"rgb(0, 211, 221)", // Cyan
-"rgb(0, 131, 199)", // Light Blue
-"rgb(0, 0, 234)", // Blue
-"rgb(207, 110, 228)", // Light Purple
-"rgb(130, 0, 128)"]; // Purple
+const COLORS = ['rgb(255, 255, 255)', // White
+    'rgb(228, 228, 228)', // Light Grey
+    'rgb(136, 136, 136)', // Grey
+    'rgb(34, 34, 34)', // Black
+    'rgb(255, 167, 209)', // Light Pink
+    'rgb(229, 0, 0)', // Red
+    'rgb(229, 149, 0)', // Dark Orange
+    'rgb(160, 106, 66)', // Light Brown
+    'rgb(229, 217, 0)', // Yellow
+    'rgb(148, 224, 68)', // Light Green
+    'rgb(2, 190, 1)', // Green
+    'rgb(0, 211, 221)', // Cyan
+    'rgb(0, 131, 199)', // Light Blue
+    'rgb(0, 0, 234)', // Blue
+    'rgb(207, 110, 228)', // Light Purple
+    'rgb(130, 0, 128)']; // Purple
 
 function Color(color) {
     this.index = 0;
